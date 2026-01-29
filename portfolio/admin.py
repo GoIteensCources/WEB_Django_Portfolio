@@ -22,4 +22,3 @@ class ExperienceAdmin(admin.ModelAdmin):
     list_display = ("position", "company", "start_date", "end_date")
     list_filter = ("company",)
     search_fields = ("position", "company")
-    

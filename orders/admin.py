@@ -12,12 +12,10 @@ class OrderAdmin(admin.ModelAdmin):
 
     # відображення полів у формі адміністратора
     fieldsets = (
-        ("main", {
-            'fields': ('name', 'email', 'project_description', 'budget', 'deadline')
-        }),
-        ('Status Information', {
-            'fields': ('status', 'created_at')
-        }),
+        (
+            "main",
+            {"fields": ("name", "email", "project_description", "budget", "deadline")},
+        ),
+        ("Status Information", {"fields": ("status", "created_at")}),
     )
     ordering = ["-created_at"]
-    
