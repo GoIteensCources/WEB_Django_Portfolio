@@ -4,12 +4,23 @@ from .forms import OrderForm
 from django.core.mail import send_mail
 from .models import Order
 from django.conf import settings
+from django.core import validators
+from django.core.exceptions import ValidationError
 
 
 def order_view(request):
     if request.method == "POST":
         form = OrderForm(request.POST)
+
+        validator = validators.EmailValidator()
         if form.is_valid():
+            
+            try: 
+                validator(form.cleaned_data["email"])
+            except ValidationError:
+                form.add_error("email", "Будь ласка, введіть дійсний email.")
+                return render(request, "orders/order_form.html", {"form": form})
+
             order: Order = form.save()
 
             # Send confirmation email
