@@ -3,3 +3,4 @@ __pycache__
 /media
 *.sqlite3
 .env
+static_files
